@@ -4,24 +4,26 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
+
 public class DriveTrain extends SubsystemBase {
-  private Spark motorLeft1 = new Spark(RobotMap.MOTOR_LEFT_1);
-  private Spark motorLeft2 = new Spark(RobotMap.MOTOR_LEFT_2);
-  private Spark motorRight1 = new Spark(RobotMap.MOTOR_RIGHT_1);
-  private Spark motorRight2 = new Spark(RobotMap.MOTOR_RIGHT_2);
+  SparkMax motorLeftF = new SparkMax(RobotMap.MOTOR_LF_ID, MotorType.kBrushless);
+  SparkMax motorLeftB = new SparkMax(RobotMap.MOTOR_LB_ID, MotorType.kBrushless);
+  SparkMax motorRightF = new SparkMax(RobotMap.MOTOR_RF_ID, MotorType.kBrushless);
+  SparkMax motorRightB = new SparkMax(RobotMap.MOTOR_RB_ID, MotorType.kBrushless);
 
   public void setLeftMotors(double speed){
-    motorLeft1.set(-speed);
-    motorLeft2.set(-speed);
+    motorLeftF.set(-speed);
+    motorLeftB.set(-speed);
   }
 
   public void setRightMotors(double speed){
-    motorRight1.set(speed);
-    motorRight2.set(speed);
+    motorRightF.set(speed);
+    motorRightB.set(speed);
   }
 
   /** Creates a new DriveTrain. */
