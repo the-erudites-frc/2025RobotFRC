@@ -8,6 +8,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.elevatorControls;
+
+import frc.robot.subsystems.Elevator;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,6 +25,7 @@ public class RobotContainer {
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER);
+  private final Elevator elevator = new Elevator();
 
   public double GetDriverRawAxis(int axis){
     return driverController.getRawAxis(axis);
@@ -48,6 +54,10 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down"));
+    
+    new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up"));
   }
 
   public Command getAutonomousCommand() {
