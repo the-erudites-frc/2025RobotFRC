@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.AlgaeHinge;
+import frc.robot.commands.AlgaeOutput;
 import frc.robot.commands.elevatorControls;
 
 import frc.robot.subsystems.Elevator;
@@ -25,6 +27,8 @@ public class RobotContainer {
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER);
+  private XboxController operatorController = new XboxController(RobotMap.OPERATOR_CONTROLLER);
+
   private final Elevator elevator = new Elevator();
 
   public double GetDriverRawAxis(int axis){
@@ -58,6 +62,10 @@ public class RobotContainer {
     new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down"));
     
     new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up"));
+
+    //algae controls
+    new JoystickButton(operatorController, XboxController.Axis.kLeftTrigger.value).onTrue(new AlgaeOutput(Robot.algae));
+    new JoystickButton(operatorController, XboxController.Button.kY.value).onTrue(new AlgaeHinge(Robot.algae));
   }
 
   public Command getAutonomousCommand() {
