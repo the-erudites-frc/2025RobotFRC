@@ -12,7 +12,7 @@ import frc.robot.subsystems.Coral;
 public class CoralHinge extends Command {
     private double speed = 0.3;
     private final Coral coral;
-    private final double time; // supposedly we will have a fixed time when toggling between both angles
+    private final double time = 2; // supposedly we will have a fixed time when toggling between both angles
     private Timer timer = new Timer();
 
 
