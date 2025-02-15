@@ -10,10 +10,15 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AlgaeHinge;
 import frc.robot.commands.AlgaeOutput;
+import frc.robot.commands.CoralHinge;
+import frc.robot.commands.CoralIntake;
+import frc.robot.commands.CoralShooter;
 import frc.robot.commands.elevatorControls;
 
 import frc.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import frc.robot.subsystems.Coral;
 
 
 /**
@@ -30,6 +35,7 @@ public class RobotContainer {
   private XboxController operatorController = new XboxController(RobotMap.OPERATOR_CONTROLLER);
 
   private final Elevator elevator = new Elevator();
+  private final Coral coral = new Coral();
 
   public double GetDriverRawAxis(int axis){
     return driverController.getRawAxis(axis);
@@ -66,6 +72,12 @@ public class RobotContainer {
     //algae controls
     new JoystickButton(operatorController, XboxController.Axis.kLeftTrigger.value).onTrue(new AlgaeOutput(Robot.algae));
     new JoystickButton(operatorController, XboxController.Button.kY.value).onTrue(new AlgaeHinge(Robot.algae));
+
+    // coral
+    new JoystickButton(driverController, XboxController.Button.kX.value).onTrue(new CoralIntake(coral)); // intake
+    new JoystickButton(driverController, XboxController.Button.kA.value).onTrue(new CoralShooter(coral)); // shooter
+    new JoystickButton(driverController, XboxController.Button.kB.value).onTrue(new CoralHinge(coral)); // hinge
+
   }
 
   public Command getAutonomousCommand() {

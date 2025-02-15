@@ -17,4 +17,10 @@ public class RobotMap {
     public static final int MOTOR_HINGE_ID = 6;
     public static final int MOTOR_IN_ID = 7;
     public static final int MOTOR_OUT_ID = 8;    
+
+    public static final int MOTOR_SHOOTER_INTAKE_L = 9;
+    public static final int MOTOR_SHOOTER_INTAKE_R = 10;
+    public static final int CORAL_TRIGGER_PIN = 11;
+    public static final int CORAL_ECHO_PIN = 12;
+    public static final int MOTOR_SHOOTER_HINGE = 13;
 }
