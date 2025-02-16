@@ -20,12 +20,13 @@ public class CoralHinge extends Command {
   /** Creates a new coralhinge. */
   public CoralHinge(Coral coral) {
     this.coral = coral;
-    addRequirements(this.coral);
+    addRequirements(this.coral); // Declare that this command requires the Coral subsystem
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //Moves hinge at the specified speed
     coral.Hinge(speed);
     timer.start();
 
@@ -36,6 +37,7 @@ public class CoralHinge extends Command {
   public void execute() {
 
     if (timer.get() > time) {
+        //If the hinge has moved for the specified time, stop it
         timer.reset();
         coral.Hinge(0);
         speed = -speed; // flip direction for next use
@@ -46,7 +48,9 @@ public class CoralHinge extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    coral.Hinge(0); //Double checks that the hinge has stopped
+  }
 
   // Returns true when the command should end.
   @Override

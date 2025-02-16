@@ -20,7 +20,7 @@ public class CoralIntake extends Command {
 
     // returns true if sensor is within distance threshold
     public Boolean sensorAccepted(int triggerPin, int echoPin) {
-    final int limitMM = 25; // 25 millimeters for limit
+    final int limitMM = 25; // 25 millimeters for limit (dista)
 
 
     Ultrasonic ultrasonicMeasure = new Ultrasonic(triggerPin, echoPin);
