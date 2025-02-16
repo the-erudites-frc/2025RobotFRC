@@ -10,12 +10,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Coral;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
 public class CoralIntake extends Command {
     private Timer timer = new Timer(); // start intake after 1s
-    private final double speed = 0.3;
-    private final Coral coral;
-    Boolean sensor = sensorAccepted(RobotMap.CORAL_TRIGGER_PIN, RobotMap.CORAL_ECHO_PIN);
+    private final double speed = 0.3; //speed that the motor intake will run
+    private final Coral coral; //References the Coral subsystem to control parts of the intake mechanism  
+    //Determines if object is detected using ultrasonic sensor
+    Boolean sensor = sensorAccepted(RobotMap.CORAL_TRIGGER_PIN, RobotMap.CORAL_ECHO_PIN); 
 
     // returns true if sensor is within distance threshold
     public Boolean sensorAccepted(int triggerPin, int echoPin) {
@@ -23,8 +24,11 @@ public class CoralIntake extends Command {
 
 
     Ultrasonic ultrasonicMeasure = new Ultrasonic(triggerPin, echoPin);
+
+     //Measure distance in millimeters
     double measurementMM = ultrasonicMeasure.getRangeMM();
 
+    // Return true if an object is detected within the 25 mm threshold
     return measurementMM > limitMM;
   }  
 
@@ -40,6 +44,7 @@ public class CoralIntake extends Command {
     public void initialize() {
         coral.Intake(speed);
 
+        //If object is detected, start the timer
         if (sensor) {
             timer.start();
         }
@@ -51,6 +56,7 @@ public class CoralIntake extends Command {
             }
         }
 
+        //Reset the timer after the loop ends to prepare for the next coral piece
         timer.reset();
     }
 
