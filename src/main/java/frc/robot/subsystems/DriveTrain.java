@@ -8,13 +8,19 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.commands.TankDrive;
 
 
 public class DriveTrain extends SubsystemBase {
-  SparkMax motorLeftF = new SparkMax(RobotMap.MOTOR_LF_ID, MotorType.kBrushless);
-  SparkMax motorLeftB = new SparkMax(RobotMap.MOTOR_LB_ID, MotorType.kBrushless);
-  SparkMax motorRightF = new SparkMax(RobotMap.MOTOR_RF_ID, MotorType.kBrushless);
-  SparkMax motorRightB = new SparkMax(RobotMap.MOTOR_RB_ID, MotorType.kBrushless);
+  private SparkMax motorLeftF = new SparkMax(RobotMap.MOTOR_LF_ID, MotorType.kBrushless);
+  private SparkMax motorLeftB = new SparkMax(RobotMap.MOTOR_LB_ID, MotorType.kBrushless);
+  private SparkMax motorRightF = new SparkMax(RobotMap.MOTOR_RF_ID, MotorType.kBrushless);
+  private SparkMax motorRightB = new SparkMax(RobotMap.MOTOR_RB_ID, MotorType.kBrushless);
+
+  public void initDefaultCommand(){
+    setDefaultCommand(new TankDrive());
+  }
+    
 
   public void setLeftMotors(double speed){
     motorLeftF.set(-speed);
