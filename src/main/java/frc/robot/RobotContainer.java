@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AlgaeHinge;
 import frc.robot.commands.AlgaeOutput;
+import frc.robot.commands.AlgaeIntake;
 import frc.robot.commands.CoralHinge;
 import frc.robot.commands.CoralIntake;
 import frc.robot.commands.CoralShooter;
@@ -71,6 +72,7 @@ public class RobotContainer {
 
     //algae controls
     new JoystickButton(operatorController, XboxController.Axis.kLeftTrigger.value).onTrue(new AlgaeOutput(Robot.algae));
+    new JoystickButton(operatorController, XboxController.Axis.kRightTrigger.value).onTrue(new AlgaeIntake(Robot.algae));
     new JoystickButton(operatorController, XboxController.Button.kY.value).onTrue(new AlgaeHinge(Robot.algae));
 
     // coral
