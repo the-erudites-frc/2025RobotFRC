@@ -20,21 +20,22 @@ public class Elevator extends SubsystemBase{
     public void moveElevator(double speed) {
         if(speed < 0 && !limitSwitch.get()){
             currentHeight = 0;
-            stop();
+            motorElevator.set(0);
             return;
-            
         }
 
         timer.reset();
         timer.start();
         motorElevator.set(speed);
 
-
     }
 
-    public void stop(){
-        double elapsedTime = timer.get();
-        currentHeight += elapsedTime * HEIGHT_PER_SEC;
+    public void stop(int direction, double moveTime){
+        if(direction == 1){
+            currentHeight += moveTime * HEIGHT_PER_SEC;
+        }else{
+            currentHeight -= moveTime * HEIGHT_PER_SEC;
+        }
         motorElevator.set(0);
         timer.stop();
     }
@@ -44,6 +45,11 @@ public class Elevator extends SubsystemBase{
     }
 
     public double nextHeight() {
+        for(int i = 0; i < heightLevels.length; i++){
+            if(currentHeight < heightLevels[i]){
+                currentIndex = i - 1;
+            }
+        }
         if(currentIndex < heightLevels.length - 1){
             currentIndex++;
         }
@@ -52,6 +58,11 @@ public class Elevator extends SubsystemBase{
     }
 
     public double prevHeight() {
+        for(int i = 0; i < heightLevels.length; i++){
+            if(currentHeight < heightLevels[i]){
+                    currentIndex = i + 1;
+            }
+        }
         if(currentIndex > 0){
             currentIndex--;
         }
