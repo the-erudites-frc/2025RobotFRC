@@ -19,6 +19,7 @@ public class elevatorManualControl extends Command {
   /** Creates a new elevatorManualControl. */
   public elevatorManualControl(Elevator elevator, String upDown) {
     // Use addRequirements() here to declare subsystem dependencies.
+    //Set direction based on button press
     this.elevator = elevator;
     if(upDown.equals("up")){
       direction = 1;
@@ -37,6 +38,7 @@ public class elevatorManualControl extends Command {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
+  //Set motor speed based on direction
   @Override
   public void execute() {
     if(direction == 1){
@@ -47,6 +49,7 @@ public class elevatorManualControl extends Command {
 }
 
   // Called once the command ends or is interrupted.
+  //Send back time and direction to recalculate current height
   @Override
   public void end(boolean interrupted) {
     elevator.stop(direction, moveTime);

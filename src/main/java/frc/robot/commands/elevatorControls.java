@@ -19,6 +19,7 @@ public class elevatorControls extends Command {
     private double currentHeight;
     private int direction; // 1 is up, 0 is down
   
+    //Set elevator to move down or up
     public elevatorControls(Elevator elevator, String upDown) {
       this.elevator = elevator;
 
@@ -32,6 +33,8 @@ public class elevatorControls extends Command {
   
     // Called when the command is initially scheduled.
     @Override
+    //Calculate time to move elevator based on difference in current and target.
+    //Start timer
     public void initialize() {
       currentHeight = elevator.getHeight();
       moveTime = Math.abs((currentHeight - targetHeight) / HEIGHT_PER_SEC);
@@ -41,6 +44,7 @@ public class elevatorControls extends Command {
     }
   
     // Called every time the scheduler runs while the command is scheduled.
+    //Set speed based on direction up/down
     @Override
     public void execute() {
       
@@ -57,12 +61,14 @@ public class elevatorControls extends Command {
   }
 
   // Called once the command ends or is interrupted.
+  //Return time and direction to recalculate current height after command is done
   @Override
   public void end(boolean interrupted) {
     elevator.stop(direction, moveTime);
   }
 
   // Returns true when the command should end.
+  //Stop when time exceeds movetime
   @Override
   public boolean isFinished() {
     return timer.get() >= moveTime;
