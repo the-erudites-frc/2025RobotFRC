@@ -4,16 +4,15 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.SparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Algae extends SubsystemBase {
-  private SparkMax motorHinge = new SparkMax(RobotMap.MOTOR_HINGE_ID, MotorType.kBrushless);
-  private SparkMax motorInner = new SparkMax(RobotMap.MOTOR_IN_ID, MotorType.kBrushless);
-  private SparkMax motorOuter = new SparkMax(RobotMap.MOTOR_OUT_ID, MotorType.kBrushless);
+  private Spark motorHinge = new Spark(RobotMap.MOTOR_HINGE_ID);
+  private Spark motorInner = new Spark(RobotMap.MOTOR_IN_ID);
+  private Spark motorOuter = new Spark(RobotMap.MOTOR_OUT_ID);
 
   /** Creates a new Algae. */
   public Algae() {}
