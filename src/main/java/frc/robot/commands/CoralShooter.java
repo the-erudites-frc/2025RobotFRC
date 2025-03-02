@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Coral;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+
 public class CoralShooter extends Command {
     private final Coral coral;
-    private final double speed = 0.3;
-    private final double time = 5; // 
-    private Timer timer = new Timer();
+    private final double speed = 0.3; //Speed at which the shooter operates
+    private final double time = 5; //Duration (in seconds) before stopping the shooter 
+    private Timer timer = new Timer(); //Tracks how long the shooter runs
 
 
   /** Creates a new coralshooter. */
@@ -27,7 +27,7 @@ public class CoralShooter extends Command {
   @Override
   public void initialize() {
     coral.Shooter(speed);
-    timer.start();
+    timer.start(); // Starts the timer to track shooter runtime
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,7 +42,9 @@ public class CoralShooter extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    coral.Shooter(0); // Ensure the shooter stops when the command ends
+  }
 
   // Returns true when the command should end.
   @Override

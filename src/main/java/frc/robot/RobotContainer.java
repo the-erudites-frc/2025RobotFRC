@@ -10,11 +10,12 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AlgaeHinge;
 import frc.robot.commands.AlgaeOutput;
+import frc.robot.commands.AlgaeIntake;
 import frc.robot.commands.CoralHinge;
 import frc.robot.commands.CoralIntake;
 import frc.robot.commands.CoralShooter;
 import frc.robot.commands.elevatorControls;
-
+import frc.robot.commands.elevatorManualControl;
 import frc.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -65,12 +66,16 @@ public class RobotContainer {
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down"));
-    
-    new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up"));
+    new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down")); //Driver increment down
+    new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up")); // Drive increment up
+
+    new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new elevatorManualControl(elevator, "down"));
+    new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new elevatorManualControl(elevator, "up"));
+
 
     //algae controls
     new JoystickButton(operatorController, XboxController.Axis.kLeftTrigger.value).onTrue(new AlgaeOutput(Robot.algae));
+    new JoystickButton(operatorController, XboxController.Axis.kRightTrigger.value).onTrue(new AlgaeIntake(Robot.algae));
     new JoystickButton(operatorController, XboxController.Button.kY.value).onTrue(new AlgaeHinge(Robot.algae));
 
     // coral

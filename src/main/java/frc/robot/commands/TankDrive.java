@@ -25,17 +25,20 @@ public class TankDrive extends Command {
     double leftStickY = Robot.m_robotContainer.GetDriverRawAxis(RobotMap.LEFT_STICK_Y);
     double rightStickY = Robot.m_robotContainer.GetDriverRawAxis(RobotMap.RIGHT_STICK_Y);
 
-    Robot.driveTrain.setLeftMotors(leftStickY);
-    Robot.driveTrain.setRightMotors(rightStickY);
+    Robot.driveTrain.setLeftMotors(leftStickY*0.3);
+    Robot.driveTrain.setRightMotors(rightStickY*0.3);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.driveTrain.setLeftMotors(0);
+    Robot.driveTrain.setRightMotors(0);
+  }
 
   // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  // @Override
+  // public boolean interrupted() {
+
+  // }
 }
