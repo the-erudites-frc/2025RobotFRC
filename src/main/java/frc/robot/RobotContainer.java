@@ -66,9 +66,8 @@ public class RobotContainer {
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down"));
-    
-    new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up"));
+    new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down")); //Driver increment down
+    new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up")); // Drive increment up
 
     new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new elevatorManualControl(elevator, "down"));
     new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new elevatorManualControl(elevator, "up"));

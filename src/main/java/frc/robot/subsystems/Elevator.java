@@ -17,6 +17,7 @@ public class Elevator extends SubsystemBase{
     private final double[] heightLevels = {0, 10 , 20, 30};
     private int currentIndex = 0;
 
+    //Set motor speed
     public void moveElevator(double speed) {
         if(speed < 0 && !limitSwitch.get()){
             currentHeight = 0;
@@ -30,6 +31,7 @@ public class Elevator extends SubsystemBase{
 
     }
 
+    //Stop motors and calculate current height
     public void stop(int direction, double moveTime){
         if(direction == 1){
             currentHeight += moveTime * HEIGHT_PER_SEC;
@@ -40,10 +42,12 @@ public class Elevator extends SubsystemBase{
         timer.stop();
     }
 
+
     public double getHeight(){
         return currentHeight;
     }
 
+    //Get next height upwards
     public double nextHeight() {
         for(int i = 0; i < heightLevels.length; i++){
             if(currentHeight < heightLevels[i]){
@@ -57,6 +61,7 @@ public class Elevator extends SubsystemBase{
 
     }
 
+    //Get next height downwards
     public double prevHeight() {
         for(int i = 0; i < heightLevels.length; i++){
             if(currentHeight < heightLevels[i]){
