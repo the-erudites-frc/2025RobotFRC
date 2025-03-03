@@ -16,7 +16,7 @@ public class Coral extends SubsystemBase {
     Spark motorH = new Spark(RobotMap.MOTOR_SHOOTER_HINGE);
 
     public void moveMotors(double speed) {
-        motorT.set(speed); // counterclockwise
+        motorT.set(speed); // ideally countercw for positive speed
         motorB.set(-speed);
     }
 
