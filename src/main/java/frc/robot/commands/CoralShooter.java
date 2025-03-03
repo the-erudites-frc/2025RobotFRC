@@ -26,7 +26,7 @@ public class CoralShooter extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    coral.Shooter(speed);
+    coral.moveMotors(-speed);
     timer.start(); // Starts the timer to track shooter runtime
   }
 
@@ -36,14 +36,14 @@ public class CoralShooter extends Command {
 
     if (timer.get() > time) {
         timer.reset();
-        coral.Shooter(0);
+        coral.moveMotors(0);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    coral.Shooter(0); // Ensure the shooter stops when the command ends
+    coral.moveMotors(0); // Ensure the shooter stops when the command ends
   }
 
   // Returns true when the command should end.

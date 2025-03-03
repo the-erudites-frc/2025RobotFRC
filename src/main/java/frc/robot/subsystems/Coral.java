@@ -4,27 +4,21 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.motorcontrol.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Coral extends SubsystemBase {
 
-    SparkMax motorL = new SparkMax(RobotMap.MOTOR_SHOOTER_INTAKE_L, MotorType.kBrushless);
-    SparkMax motorR = new SparkMax(RobotMap.MOTOR_SHOOTER_INTAKE_R, MotorType.kBrushless);
-    SparkMax motorH = new SparkMax(RobotMap.MOTOR_SHOOTER_HINGE, MotorType.kBrushless);
+    Spark motorT = new Spark(RobotMap.MOTOR_SHOOTER_INTAKE_T);
+    Spark motorB = new Spark(RobotMap.MOTOR_SHOOTER_INTAKE_B);
+    Spark motorH = new Spark(RobotMap.MOTOR_SHOOTER_HINGE);
 
-    public void Intake(double speed) {
-        motorL.set(speed);
-        motorR.set(-speed);
+    public void moveMotors(double speed) {
+        motorT.set(speed); // ideally countercw for positive speed
+        motorB.set(-speed);
     }
-
-    public void Shooter(double speed) {
-        motorL.set(-speed);
-        motorR.set(speed);
-    } 
 
     public void Hinge(double speed) {
         motorH.set(speed);

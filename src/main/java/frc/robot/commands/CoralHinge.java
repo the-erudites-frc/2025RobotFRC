@@ -40,7 +40,7 @@ public class CoralHinge extends Command {
         //If the hinge has moved for the specified time, stop it
         timer.reset();
         coral.Hinge(0);
-        speed = -speed; // flip direction for next use
+
     }
 
     
@@ -50,6 +50,7 @@ public class CoralHinge extends Command {
   @Override
   public void end(boolean interrupted) {
     coral.Hinge(0); //Double checks that the hinge has stopped
+    speed = -speed; // flip direction for next use
   }
 
   // Returns true when the command should end.
