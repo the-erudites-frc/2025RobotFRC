@@ -42,7 +42,7 @@ public class CoralIntake extends Command {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        coral.Intake(speed);
+        coral.moveMotors(speed);
 
         //If object is detected, start the timer
         if (sensor) {

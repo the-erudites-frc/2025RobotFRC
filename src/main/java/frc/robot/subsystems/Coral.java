@@ -15,15 +15,10 @@ public class Coral extends SubsystemBase {
     Spark motorB = new Spark(RobotMap.MOTOR_SHOOTER_INTAKE_B);
     Spark motorH = new Spark(RobotMap.MOTOR_SHOOTER_HINGE);
 
-    public void Intake(double speed) {
+    public void moveMotors(double speed) {
         motorT.set(speed); // counterclockwise
         motorB.set(-speed);
     }
-
-    public void Shooter(double speed) {
-        motorT.set(-speed);
-        motorB.set(speed);
-    } 
 
     public void Hinge(double speed) {
         motorH.set(speed);
