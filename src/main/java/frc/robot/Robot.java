@@ -7,9 +7,24 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.commands.AutonDrive;
 import frc.robot.commands.TankDrive;
-import frc.robot.subsystems.Algae;
+import frc.robot.commands.AutonCoralMove;
+import frc.robot.commands.AutonDrive;
+import frc.robot.commands.CoralHingeMove;
+import frc.robot.commands.CoralIntakeShooter;
+import frc.robot.commands.ElevatorManual;
+import frc.robot.subsystems.AlgaeHinge;
+import frc.robot.subsystems.AlgaeWheels;
+import frc.robot.commands.AlgaeHingeMove;
+import frc.robot.commands.AlgaeIntakeShooter;
+import frc.robot.subsystems.CoralHinge;
+import frc.robot.subsystems.CoralWheels;
+// import frc.robot.subsystems.Algae;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -19,9 +34,34 @@ import frc.robot.subsystems.DriveTrain;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public static RobotContainer m_robotContainer;
+
+  //Drive base initializations
   public static DriveTrain driveTrain = new DriveTrain();
-  public static Algae algae = new Algae();
   public static TankDrive tankDrive = new TankDrive();
+
+  //Elevators initializations
+  public static Elevator elevator = new Elevator();
+  public static ElevatorManual elevatorManual = new ElevatorManual();
+  public static boolean troubleshooting = false;
+
+  //Coral's initializations
+  public static CoralHinge coralHinge = new CoralHinge();
+  public static CoralHingeMove coralHingeMove = new CoralHingeMove();
+
+  public static CoralWheels coralWheels = new CoralWheels();
+  public static CoralIntakeShooter coralIntakeShooter = new CoralIntakeShooter();
+
+  //Algae's initializations
+  public static AlgaeHinge algaeHinge = new AlgaeHinge();
+  public static AlgaeHingeMove algaeHingeMove = new AlgaeHingeMove();
+
+  public static AlgaeWheels algaeWheels = new AlgaeWheels();
+  public static AlgaeIntakeShooter algaeIntakeShooter = new AlgaeIntakeShooter();
+
+  // // //Autos initializations
+  public static AutonDrive autonDrive = new AutonDrive();
+  // public static AutonCoralMove autonCoralMove = new AutonCoralMove();
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -51,7 +91,8 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -59,17 +100,20 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    // driveTrain.autonDriveTest();
+    // coralHinge.autonHingeMove();
+    // autonDrive.schedule();
+    // autonCoralMove.schedule();
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    Commands.parallel(new AutonDrive(), new AutonCoralMove());
+
+  }
 
   @Override
   public void teleopInit() {
@@ -80,23 +124,37 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    tankDrive.schedule();
+
+    elevatorManual.schedule();
+
+    coralIntakeShooter.schedule();
+    coralHingeMove.schedule();
+
+    algaeIntakeShooter.schedule();
+    algaeHingeMove.schedule();
+    
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    tankDrive.execute();
+    
   }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
+    
   }
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    // motorH.set(-0.6);
+  }
 
   /** This function is called once when the robot is first started up. */
   @Override

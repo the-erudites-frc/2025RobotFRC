@@ -5,21 +5,18 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.AlgaeHinge;
-import frc.robot.commands.AlgaeOutput;
-import frc.robot.commands.AlgaeIntake;
-import frc.robot.commands.CoralHinge;
-import frc.robot.commands.CoralIntake;
-import frc.robot.commands.CoralShooter;
-import frc.robot.commands.elevatorControls;
-import frc.robot.commands.elevatorManualControl;
-import frc.robot.subsystems.Elevator;
+// import frc.robot.commands.AlgaeHinge;
+// import frc.robot.commands.AlgaeOutput;
+// import frc.robot.commands.AlgaeIntake;
+// import frc.robot.commands.CoralHinge;
+// import frc.robot.commands.CoralIntake;
+// import frc.robot.commands.CoralShooter;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+// import frc.robot.commands.ElevatorControl;
 
-import frc.robot.subsystems.Coral;
+// import frc.robot.subsystems.Coral;
 
 
 /**
@@ -35,12 +32,56 @@ public class RobotContainer {
   private XboxController driverController = new XboxController(RobotMap.DRIVER_CONTROLLER);
   private XboxController operatorController = new XboxController(RobotMap.OPERATOR_CONTROLLER);
 
-  private final Elevator elevator = new Elevator();
-  private final Coral coral = new Coral();
+  // private final Elevator elevator = new Elevator();
+  // private final Coral coral = new Coral();
 
   public double GetDriverRawAxis(int axis){
     return driverController.getRawAxis(axis);
   }
+
+  //elevator
+  public boolean GetDriverRightBumper(){
+    return driverController.getRightBumperButtonPressed();
+  }
+
+  public boolean GetDriverLeftBumper(){
+    return driverController.getLeftBumperButtonPressed();
+  }
+
+  public boolean getOperatorkX() {
+    return operatorController.getXButton();
+  }
+
+  public boolean getOperatorkB() {
+    return operatorController.getBButton();
+  }
+
+  public boolean getOperatorLB() {
+    return operatorController.getLeftBumperButton();
+  }
+
+  public boolean getOperatorRB() {
+    return operatorController.getRightBumperButton();
+  }
+
+  public boolean getOperatorkY() {
+    return operatorController.getYButton();
+  }
+
+  public boolean getOperatorkA() {
+    return operatorController.getAButton();
+  }
+
+  public double getOperatorBackLeftBumper(){
+    return operatorController.getLeftTriggerAxis();
+  }
+
+  public double getOperatorBackRightBumper(){
+    return operatorController.getRightTriggerAxis();
+  }
+
+
+ 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -66,37 +107,33 @@ public class RobotContainer {
     // cancelling on release.
     // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new elevatorControls(elevator, "down")); //Driver increment down
-    new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new elevatorControls(elevator, "up")); // Drive increment up
+    // new JoystickButton(driverController, XboxController.Button.kRightBumper.value).onTrue(new ElevatorControl()); //Driver increment down
+    // new JoystickButton(driverController, XboxController.Button.kLeftBumper.value).onTrue(new ElevatorControl()); // Drive increment up
 
-    new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new elevatorManualControl(elevator, "down"));
-    new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new elevatorManualControl(elevator, "up"));
+    // new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new ElevatorManual(elevator, "down"));
+    // new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value).whileTrue(new ElevatorManual(elevator, "up"));
 
 
-    //algae controls
-    new JoystickButton(operatorController, XboxController.Axis.kLeftTrigger.value).onTrue(new AlgaeOutput(Robot.algae));
-    new JoystickButton(operatorController, XboxController.Axis.kRightTrigger.value).onTrue(new AlgaeIntake(Robot.algae));
-    new JoystickButton(operatorController, XboxController.Button.kY.value).onTrue(new AlgaeHinge(Robot.algae));
+    // //algae controls
+    // new JoystickButton(operatorController, XboxController.Axis.kLeftTrigger.value).onTrue(new AlgaeOutput(Robot.algae));
+    // new JoystickButton(operatorController, XboxController.Axis.kRightTrigger.value).onTrue(new AlgaeIntake(Robot.algae));
+    // new JoystickButton(operatorController, XboxController.Button.kY.value).onTrue(new AlgaeHinge(Robot.algae));
 
-    // coral
-    new JoystickButton(driverController, XboxController.Button.kX.value).onTrue(new CoralIntake(coral)); // intake
-    new JoystickButton(driverController, XboxController.Button.kA.value).onTrue(new CoralShooter(coral)); // shooter
-    new JoystickButton(driverController, XboxController.Button.kB.value).onTrue(new CoralHinge(coral)); // hinge
+    // // coral
+    // new JoystickButton(driverController, XboxController.Button.kX.value).onTrue(new CoralIntake(coral)); // intake
+    // new JoystickButton(driverController, XboxController.Button.kA.value).onTrue(new CoralShooter(coral)); // shooter
+    // new JoystickButton(driverController, XboxController.Button.kB.value).onTrue(new CoralHinge(coral)); // hinge
 
   }
 
-  public Command getAutonomousCommand() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAutonomousCommand'");
-  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
+  // public Command getAutonomousCommand(DriveTrain subsystem) {
   //   // An example command will be run in autonomous
-  //   return Autos.exampleAuto(m_exampleSubsystem);
+  //   return Autos.exampleAuto(subsystem);
   // }
 }
