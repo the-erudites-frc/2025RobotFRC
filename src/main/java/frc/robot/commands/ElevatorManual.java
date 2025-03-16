@@ -8,7 +8,7 @@ public class ElevatorManual extends Command{
     
 
     public ElevatorManual() {
-        addRequirements(Robot.coralHinge); // Declare that this command requires the Coral subsystem
+        addRequirements(Robot.elevator); // Declare that this command requires the Coral subsystem
     }
     
     // Called when the command is initially scheduled.
@@ -25,10 +25,10 @@ public class ElevatorManual extends Command{
         System.out.println("RB");
         Robot.elevator.moveElevator(-RobotMap.SPEED_ELEVATOR);
     } else if (Robot.m_robotContainer.GetDriverLeftBumper()) {
-        Robot.elevator.moveElevator(RobotMap.SPEED_ELEVATOR);
+        Robot.elevator.moveElevator(RobotMap.SPEED_ELEVATOR * .4);
         System.out.println("LB");
     } else {
-        Robot.elevator.moveElevator(RobotMap.SPEED_ELEVATOR);
+        Robot.elevator.stop();
     }
 
     // if (timer.get() > time) {

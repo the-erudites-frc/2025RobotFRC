@@ -103,7 +103,7 @@ public class Robot extends TimedRobot {
 
     // driveTrain.autonDriveTest();
     // coralHinge.autonHingeMove();
-    // autonDrive.schedule();
+    autonDrive.schedule();
     // autonCoralMove.schedule();
 
   }
@@ -111,7 +111,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    Commands.parallel(new AutonDrive(), new AutonCoralMove());
+    // Commands.parallel(new AutonDrive(), new AutonCoralMove());
 
   }
 

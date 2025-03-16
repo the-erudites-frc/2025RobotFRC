@@ -41,11 +41,11 @@ public class RobotContainer {
 
   //elevator
   public boolean GetDriverRightBumper(){
-    return driverController.getRightBumperButtonPressed();
+    return driverController.getRightBumperButton();
   }
 
   public boolean GetDriverLeftBumper(){
-    return driverController.getLeftBumperButtonPressed();
+    return driverController.getLeftBumperButton();
   }
 
   public boolean getOperatorkX() {

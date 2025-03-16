@@ -21,17 +21,17 @@ public class RobotMap {
 
     public static final double ALGAE_SPEED = 0.2;
     public static final double ALGAE_HOLD_SPEED = -0.01;
-    // public static final double ALGAE_HOLD_SPEED_HINGE = -0.05;
+    public static final double ALGAE_HOLD_SPEED_HINGE = -0.05;
     
 
     //All coral constants
     public static final int MOTOR_TC_ID = 6;
     public static final int MOTOR_CORAL_HINGE_ID = 8;
 
-    public static final double CORAL_SPEED = 0.2;
+    public static final double CORAL_SPEED = 0.4;
     public static final double CORAL_HOLD_SPEED = -0.01;
 
-    public static final double CORAL_HINGE_SPEED = 0.3;
+    public static final double CORAL_HINGE_SPEED = 0.5;
     //All Elevator constants
 
     //Elevator height
@@ -40,7 +40,7 @@ public class RobotMap {
     public static final double ELEVATOR_H3 = 10;
     public static final double ELEVATOR_H4 = 15;
 
-    public static final double SPEED_ELEVATOR = 0.2; //Elevator Motor Speed
+    public static final double SPEED_ELEVATOR = 0.4; //Elevator Motor Speed
     public static final double HEIGHT_PER_ROTATION = 1/250; //for elevator encoder
     public static final double ELEVATOR_HOLD_V = -0.05; //Elevator Motor Velocity to hold the elevator in place 
     

@@ -27,7 +27,7 @@ public class AlgaeHingeMove extends Command{
         Robot.algaeHinge.moveHinge(-Robot.m_robotContainer.getOperatorBackRightBumper());
         // System.out.println("RB");
     } else {
-        Robot.algaeHinge.moveHinge(RobotMap.ELEVATOR_HOLD_V);
+        Robot.algaeHinge.moveHinge(RobotMap.ALGAE_HOLD_SPEED);
     }
 
     // if (timer.get() > time) {

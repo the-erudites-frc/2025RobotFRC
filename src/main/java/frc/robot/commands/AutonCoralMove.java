@@ -22,7 +22,7 @@ public class AutonCoralMove extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.coralHinge.moveHinge(-0.3);
+    Robot.coralHinge.moveHinge(-0.01);
     
   }
 
